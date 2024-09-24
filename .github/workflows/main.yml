@@ -1,0 +1,27 @@
+name: Create Issue
+
+on:
+  workflow_dispatch:
+    inputs:
+      title: 
+        description: 'Issue title'
+        default: 'Preset Issue Title'
+      body: 
+        description: 'Issue body'
+        default: 'Preset issue body'
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create issue
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.create({
+              owner: 'sudorunoscar',
+              repo: 'githubactions',
+              title: '${{ inputs.title }}',
+              body: '${{ inputs.body }}'
+            })
