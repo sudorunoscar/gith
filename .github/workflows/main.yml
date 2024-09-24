@@ -1,14 +1,9 @@
-name: Create Issue
+name: Issue 4 Issue
 
 on:
-  workflow_dispatch:
-    inputs:
-      title: 
-        description: 'Issue title'
-        default: 'Preset Issue Title'
-      body: 
-        description: 'Issue body'
-        default: 'Preset issue body'
+  push:
+    branches:
+      - main
 
 jobs:
   create-issue:
@@ -22,6 +17,6 @@ jobs:
             github.issues.create({
               owner: 'sudorunoscar',
               repo: 'githubactions',
-              title: '${{ inputs.title }}',
-              body: '${{ inputs.body }}'
+              title: 'Preset Issue Title',
+              body: 'Preset issue body'
             })
